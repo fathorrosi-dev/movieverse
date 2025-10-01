@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "155490193690",
+    "project_id": "movieverse-19233",
+    "storage_bucket": "movieverse-19233.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:155490193690:android:74ccfea24246f73af51ca3",
+        "android_client_info": {
+          "package_name": "com.fathorrosi.movieverse"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNLhvG9X86Kk4g-wDDQWxF1YiElSOpPds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
