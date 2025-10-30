@@ -17,9 +17,8 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace = "com.example.movieverse"
-    
     compileSdk = 36  
-    ndkVersion = "27.0.12077973"  
+    ndkVersion = "27.0.12077973"
     
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17   
@@ -34,11 +33,18 @@ android {
         applicationId = "com.fathorrosi.movieverse"
         minSdk = flutter.minSdkVersion  
         targetSdk = 35  
-        versionCode = 9  
-        versionName = "1.9.0"
+        versionCode = 10  // Increment untuk rilis baru
+        versionName = "1.10.0"  // Increment untuk rilis baru
         
         ndk {
             abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86_64")
+        }
+        
+        // TAMBAHAN UNTUK DUKUNGAN 16KB PAGE SIZE
+        externalNativeBuild {
+            cmake {
+                arguments += listOf("-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON")
+            }
         }
     }
     
@@ -62,7 +68,6 @@ android {
                 "proguard-rules.pro"
             )
         }
-
         debug {
             ndk {
                 abiFilters += listOf("arm64-v8a")  
