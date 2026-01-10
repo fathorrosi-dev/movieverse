@@ -14,7 +14,9 @@ class DiscoverTvBloc extends Bloc<DiscoverTvEvent, DiscoverTvState> {
   }
 
   void _fetchDiscoverTv(
-      FetchDiscoverTv event, Emitter<DiscoverTvState> emit) async {
+    FetchDiscoverTv event,
+    Emitter<DiscoverTvState> emit,
+  ) async {
     emit(DiscoverTvLoading());
     final result = await getDiscoverTv.execute();
     result.fold(

@@ -5,12 +5,22 @@ import 'package:movieverse/utils/database_exceptions.dart';
 
 abstract class FirebaseRepository {
   Future<Either<DatabaseException, void>> registerUser(
-      String name, String email, String password);
+    String name,
+    String email,
+    String password,
+  );
   Future<Either<DatabaseException, void>> loginUser(
-      String email, String password);
+    String email,
+    String password,
+  );
   Future<Either<DatabaseException, UserEntity>> getUserData();
   Future<Either<DatabaseException, String>> addToWatchlist(
-      String id, String name, String posterPath, String release, bool isMovie);
+    String id,
+    String name,
+    String posterPath,
+    String release,
+    bool isMovie,
+  );
   Future<Either<DatabaseException, String>> removeFromWatchlist(String id);
   Future<Either<DatabaseException, List<WatchlistItem>>> getWatchlist();
   Future<bool> getWatchlistById(String id);

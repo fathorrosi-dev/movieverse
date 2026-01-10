@@ -21,9 +21,7 @@ class OnboardingScreen extends StatelessWidget {
         return Scaffold(
           body: Stack(
             children: [
-              const RiveAnimation.asset(
-                "assets/riveAssets/shapes.riv",
-              ),
+              const RiveAnimation.asset("assets/riveAssets/shapes.riv"),
               Positioned.fill(
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 7, sigmaY: 7),
@@ -37,8 +35,9 @@ class OnboardingScreen extends StatelessWidget {
                 duration: const Duration(milliseconds: 260),
                 child: SafeArea(
                   child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: $styles.insets.lg),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: $styles.insets.lg,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -66,9 +65,9 @@ class OnboardingScreen extends StatelessWidget {
                           width: 190,
                           child: FilledButton(
                             onPressed: () {
-                              context
-                                  .read<OnboardingBloc>()
-                                  .add(OnboardingCompleted());
+                              context.read<OnboardingBloc>().add(
+                                OnboardingCompleted(),
+                              );
                               context.pushReplacement('/loginScreen');
                             },
                             style: ButtonStyle(
@@ -87,16 +86,18 @@ class OnboardingScreen extends StatelessWidget {
                                 Gap($styles.insets.xs),
                                 Text(
                                   "Start Exploring",
-                                  style: $styles.text.labelLarge
-                                      .copyWith(color: Colors.black),
+                                  style: $styles.text.labelLarge.copyWith(
+                                    color: Colors.black,
+                                  ),
                                 ),
                               ],
                             ),
                           ),
                         ),
                         Padding(
-                          padding:
-                              EdgeInsets.symmetric(vertical: $styles.insets.lg),
+                          padding: EdgeInsets.symmetric(
+                            vertical: $styles.insets.lg,
+                          ),
                         ),
                       ],
                     ),

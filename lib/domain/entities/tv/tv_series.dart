@@ -17,11 +17,12 @@ class TvSeries extends Equatable {
     required this.voteCount,
   });
 
-  TvSeries.watchlist(
-      {required this.id,
-      required this.overview,
-      required this.posterPath,
-      required this.name});
+  TvSeries.watchlist({
+    required this.id,
+    required this.overview,
+    required this.posterPath,
+    required this.name,
+  });
 
   String? backdropPath;
   String? firstAirDate;
@@ -37,16 +38,16 @@ class TvSeries extends Equatable {
 
   @override
   List<Object?> get props => [
-        backdropPath,
-        firstAirDate,
-        genreIds,
-        id,
-        originalName,
-        overview,
-        popularity,
-        posterPath,
-        name,
-        voteAverage,
-        voteCount,
-      ];
+    backdropPath,
+    firstAirDate,
+    genreIds,
+    id,
+    originalName,
+    overview,
+    popularity,
+    posterPath,
+    name,
+    voteAverage,
+    voteCount,
+  ];
 }

@@ -10,7 +10,7 @@ class SaveCredentialsBloc
   final SaveCredentials saveCredentialsUseCase;
 
   SaveCredentialsBloc(this.saveCredentialsUseCase)
-      : super(SaveCredentialsInitial()) {
+    : super(SaveCredentialsInitial()) {
     on<SaveCredentialsEvent>(_onSaveCredentialsEvent);
   }
 
@@ -23,10 +23,7 @@ class SaveCredentialsBloc
     emit(SaveCredentialsLoading());
 
     try {
-      await saveCredentialsUseCase.execute(
-        event.email,
-        event.password,
-      );
+      await saveCredentialsUseCase.execute(event.email, event.password);
       emit(SaveCredentialsSuccess());
     } catch (error) {
       emit(SaveCredentialsFailure(error.toString()));

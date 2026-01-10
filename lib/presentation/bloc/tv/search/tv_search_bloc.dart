@@ -11,8 +11,10 @@ class TvSearchBloc extends Bloc<TvSearchEvent, TvSearchState> {
   final SearchTvSeries _searchTv;
 
   TvSearchBloc(this._searchTv) : super(TvSearchEmpty()) {
-    on<TvOnQueryChanged>(_onChangedQuery,
-        transformer: _debounce(const Duration(milliseconds: 500)));
+    on<TvOnQueryChanged>(
+      _onChangedQuery,
+      transformer: _debounce(const Duration(milliseconds: 500)),
+    );
   }
 
   void _onChangedQuery(
@@ -32,6 +34,7 @@ class TvSearchBloc extends Bloc<TvSearchEvent, TvSearchState> {
   }
 
   EventTransformer<TvOnQueryChanged> _debounce<TvOnQueryChanged>(
-          Duration duration) =>
+    Duration duration,
+  ) =>
       (events, mapper) => events.debounceTime(duration).switchMap(mapper);
 }

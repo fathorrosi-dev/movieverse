@@ -11,7 +11,7 @@ class RemoveFromWatchlistBloc
   final FirebaseRepository repository;
 
   RemoveFromWatchlistBloc(this.repository)
-      : super(RemoveFromWatchlistInitial()) {
+    : super(RemoveFromWatchlistInitial()) {
     on<RemoveWatchlistItem>(_onRemoveWatchlistItem);
   }
 

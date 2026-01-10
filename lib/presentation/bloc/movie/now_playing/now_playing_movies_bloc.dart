@@ -11,17 +11,20 @@ class NowPlayingMoviesBloc
   final GetNowPlayingMovies getNowPlayingMovies;
 
   NowPlayingMoviesBloc(this.getNowPlayingMovies)
-      : super(NowPlayingMoviesEmpty()) {
+    : super(NowPlayingMoviesEmpty()) {
     on<FetchNowPlayingMovies>(_fetchNowPlayingMovies);
   }
 
   void _fetchNowPlayingMovies(
-      FetchNowPlayingMovies event, Emitter<NowPlayingMoviesState> emit) async {
+    FetchNowPlayingMovies event,
+    Emitter<NowPlayingMoviesState> emit,
+  ) async {
     emit(NowPlayingMoviesLoading());
     final result = await getNowPlayingMovies.execute();
     result.fold(
       (failure) => emit(
-          NowPlayingMoviesError(NetworkExceptions.getErrorMessage(failure))),
+        NowPlayingMoviesError(NetworkExceptions.getErrorMessage(failure)),
+      ),
       (data) => emit(NowPlayingMoviesHasData(data)),
     );
   }

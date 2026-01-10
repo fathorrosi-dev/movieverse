@@ -30,8 +30,9 @@ class CustomTextField extends StatelessWidget {
       obscureText: obscureText,
       style: $styles.text.bodyMedium,
       onChanged: onChanged,
-      onEditingComplete:
-          onEditingComplete == null ? null : () => onEditingComplete!(),
+      onEditingComplete: onEditingComplete == null
+          ? null
+          : () => onEditingComplete!(),
       decoration: InputDecoration(
         prefixIconColor: $styles.theme.tertiaryColor,
         labelText: label,
@@ -41,19 +42,25 @@ class CustomTextField extends StatelessWidget {
         prefixIcon: Icon(icon),
         errorText: errorText,
         errorBorder: UnderlineInputBorder(
-            borderSide:
-                BorderSide(color: $styles.theme.tertiaryColor, width: 1)),
-        errorStyle: $styles.text.labelSmall
-            .copyWith(color: $styles.theme.tertiaryColor),
+          borderSide: BorderSide(color: $styles.theme.tertiaryColor, width: 1),
+        ),
+        errorStyle: $styles.text.labelSmall.copyWith(
+          color: $styles.theme.tertiaryColor,
+        ),
         suffixIcon: suffixIcon,
         focusedBorder: OutlineInputBorder(
-            borderSide:
-                BorderSide(color: $styles.theme.tertiaryColor, width: 1.0)),
+          borderSide: BorderSide(
+            color: $styles.theme.tertiaryColor,
+            width: 1.0,
+          ),
+        ),
         enabledBorder: OutlineInputBorder(
-            borderSide:
-                BorderSide(color: $styles.theme.neutralColor, width: 1.0)),
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          borderSide: BorderSide(color: $styles.theme.neutralColor, width: 1.0),
+        ),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 12,
+        ),
       ),
     );
   }

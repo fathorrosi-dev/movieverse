@@ -13,29 +13,31 @@ class InitialScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (_) => di.locator<AutoLoginBloc>()..add(AutoLoginStarted()),
-          ),
-          BlocProvider(
-            create: (_) =>
-                di.locator<OnboardingBloc>()..add(OnboardingStarted()),
-          )
-        ],
-        child: BlocBuilder<AutoLoginBloc, AutoLoginState>(
-            builder: (context, state) {
+      providers: [
+        BlocProvider(
+          create: (_) => di.locator<AutoLoginBloc>()..add(AutoLoginStarted()),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<OnboardingBloc>()..add(OnboardingStarted()),
+        ),
+      ],
+      child: BlocBuilder<AutoLoginBloc, AutoLoginState>(
+        builder: (context, state) {
           if (state is AutoLoginSucced) {
             return const NavigationBars();
           } else {
             return BlocBuilder<OnboardingBloc, OnboardingState>(
-                builder: (context, state) {
-              if (state is OnboardingComplete) {
-                return const LoginScreen();
-              } else {
-                return const OnboardingScreen();
-              }
-            });
+              builder: (context, state) {
+                if (state is OnboardingComplete) {
+                  return const LoginScreen();
+                } else {
+                  return const OnboardingScreen();
+                }
+              },
+            );
           }
-        }));
+        },
+      ),
+    );
   }
 }

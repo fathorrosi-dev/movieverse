@@ -42,117 +42,110 @@ class _TvScreenState extends State<TvScreen> {
         titleTextStyle: $styles.text.headlineSmall,
       ),
       body: SafeArea(
-          child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: Text(
-                'Airing Today',
-                style: $styles.text.headlineMedium,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: Text('Airing Today', style: $styles.text.headlineMedium),
               ),
-            ),
-            Gap($styles.insets.xs),
-            SizedBox(
-              height: 370,
-              child: BlocBuilder<AiringTodayTvBloc, AiringTodayTvState>(
+              Gap($styles.insets.xs),
+              SizedBox(
+                height: 370,
+                child: BlocBuilder<AiringTodayTvBloc, AiringTodayTvState>(
                   builder: (_, state) {
-                if (state is AiringTodayTvLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.blueAccent,
-                    ),
-                  );
-                } else if (state is AiringTodayTvHasData) {
-                  return TvCard(state.result);
-                } else {
-                  return const Text('Something went wrong');
-                }
-              }),
-            ),
-            Gap($styles.insets.sm),
-            Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: Text(
-                'Popular',
-                style: $styles.text.headlineMedium,
+                    if (state is AiringTodayTvLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.blueAccent,
+                        ),
+                      );
+                    } else if (state is AiringTodayTvHasData) {
+                      return TvCard(state.result);
+                    } else {
+                      return const Text('Something went wrong');
+                    }
+                  },
+                ),
               ),
-            ),
-            Gap($styles.insets.xs),
-            SizedBox(
-              height: 370,
-              child: BlocBuilder<PopularTvBloc, PopularTvState>(
-                  builder: (_, state) {
-                if (state is PopularTvLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.blueAccent,
-                    ),
-                  );
-                } else if (state is PopularTvHasData) {
-                  return TvCard(state.result);
-                } else {
-                  return const Text('Something went wrong');
-                }
-              }),
-            ),
-            Gap($styles.insets.sm),
-            Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: Text(
-                'Top Rated',
-                style: $styles.text.headlineMedium,
+              Gap($styles.insets.sm),
+              Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: Text('Popular', style: $styles.text.headlineMedium),
               ),
-            ),
-            Gap($styles.insets.xs),
-            SizedBox(
-              height: 370,
-              child: BlocBuilder<TopRatedTvBloc, TopRatedTvState>(
+              Gap($styles.insets.xs),
+              SizedBox(
+                height: 370,
+                child: BlocBuilder<PopularTvBloc, PopularTvState>(
                   builder: (_, state) {
-                if (state is TopRatedTvLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.blueAccent,
-                    ),
-                  );
-                } else if (state is TopRatedTvHasData) {
-                  return TvCard(state.result);
-                } else {
-                  return const Text('Something went wrong');
-                }
-              }),
-            ),
-            Gap($styles.insets.sm),
-            Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: Text(
-                'On The Air',
-                style: $styles.text.headlineMedium,
+                    if (state is PopularTvLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.blueAccent,
+                        ),
+                      );
+                    } else if (state is PopularTvHasData) {
+                      return TvCard(state.result);
+                    } else {
+                      return const Text('Something went wrong');
+                    }
+                  },
+                ),
               ),
-            ),
-            Gap($styles.insets.xs),
-            SizedBox(
-              height: 370,
-              child: BlocBuilder<OnTheAirTvBloc, OnTheAirTvState>(
+              Gap($styles.insets.sm),
+              Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: Text('Top Rated', style: $styles.text.headlineMedium),
+              ),
+              Gap($styles.insets.xs),
+              SizedBox(
+                height: 370,
+                child: BlocBuilder<TopRatedTvBloc, TopRatedTvState>(
                   builder: (_, state) {
-                if (state is OnTheAirTvLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.blueAccent,
-                    ),
-                  );
-                } else if (state is OnTheAirTvHasData) {
-                  return TvCard(state.result);
-                } else {
-                  return const Text('Something went wrong');
-                }
-              }),
-            ),
-            Gap($styles.insets.sm),
-          ],
+                    if (state is TopRatedTvLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.blueAccent,
+                        ),
+                      );
+                    } else if (state is TopRatedTvHasData) {
+                      return TvCard(state.result);
+                    } else {
+                      return const Text('Something went wrong');
+                    }
+                  },
+                ),
+              ),
+              Gap($styles.insets.sm),
+              Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: Text('On The Air', style: $styles.text.headlineMedium),
+              ),
+              Gap($styles.insets.xs),
+              SizedBox(
+                height: 370,
+                child: BlocBuilder<OnTheAirTvBloc, OnTheAirTvState>(
+                  builder: (_, state) {
+                    if (state is OnTheAirTvLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.blueAccent,
+                        ),
+                      );
+                    } else if (state is OnTheAirTvHasData) {
+                      return TvCard(state.result);
+                    } else {
+                      return const Text('Something went wrong');
+                    }
+                  },
+                ),
+              ),
+              Gap($styles.insets.sm),
+            ],
+          ),
         ),
-      )),
+      ),
     );
   }
 }

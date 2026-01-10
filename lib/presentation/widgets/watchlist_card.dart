@@ -15,7 +15,8 @@ class WatchlistCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width /
+    final width =
+        MediaQuery.of(context).size.width /
         MediaQuery.of(context).devicePixelRatio;
 
     return GridView.builder(
@@ -32,58 +33,59 @@ class WatchlistCard extends StatelessWidget {
       itemBuilder: (context, index) {
         final items = item[index];
         return LayoutBuilder(
-            builder: ((BuildContext context, BoxConstraints constraints) {
-          double cellWidth = constraints.maxWidth;
-          return Card(
-            color: $styles.theme.cardColor,
-            child: InkWell(
-              splashColor: Colors.blueAccent.withAlpha(30),
-              onTap: () {
-                items.isMovie!
-                    ? context.push('/movieDetailScreen/${items.id!}')
-                    : context.push('/tvDetailScreen/${items.id!}');
-              },
-              child: SizedBox(
-                height: 330,
-                child: Stack(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: cellWidth,
-                          height: 257,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: CachedNetworkImage(
-                              fit: BoxFit.fill,
-                              imageUrl: "$baseImgUrl${items.posterPath}",
-                              placeholder: (context, url) => const Center(
-                                  child: CircularProgressIndicator()),
-                              errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
+          builder: ((BuildContext context, BoxConstraints constraints) {
+            double cellWidth = constraints.maxWidth;
+            return Card(
+              color: $styles.theme.cardColor,
+              child: InkWell(
+                splashColor: Colors.blueAccent.withAlpha(30),
+                onTap: () {
+                  items.isMovie!
+                      ? context.push('/movieDetailScreen/${items.id!}')
+                      : context.push('/tvDetailScreen/${items.id!}');
+                },
+                child: SizedBox(
+                  height: 330,
+                  child: Stack(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: cellWidth,
+                            height: 257,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: CachedNetworkImage(
+                                fit: BoxFit.fill,
+                                imageUrl: "$baseImgUrl${items.posterPath}",
+                                placeholder: (context, url) => const Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
+                              ),
                             ),
                           ),
-                        ),
-                        Gap($styles.insets.xs),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8, right: 8),
-                          child: Text(
-                            items.name ?? "",
-                            style: $styles.text.labelLarge,
+                          Gap($styles.insets.xs),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8, right: 8),
+                            child: Text(
+                              items.name ?? "",
+                              style: $styles.text.labelLarge,
+                            ),
                           ),
-                        ),
-                        Gap($styles.insets.xxs),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8, right: 8),
-                          child: Text(
-                            formatDate(items.release ?? ''),
-                            style: $styles.text.bodySmall,
+                          Gap($styles.insets.xxs),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8, right: 8),
+                            child: Text(
+                              formatDate(items.release ?? ''),
+                              style: $styles.text.bodySmall,
+                            ),
                           ),
-                        )
-                      ],
-                    ),
-                    Positioned(
+                        ],
+                      ),
+                      Positioned(
                         right: 7,
                         top: 7,
                         child: ClipRRect(
@@ -102,13 +104,15 @@ class WatchlistCard extends StatelessWidget {
                                     color: $styles.theme.tertiaryColor,
                                   ),
                           ),
-                        )),
-                  ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          );
-        }));
+            );
+          }),
+        );
       },
     );
   }

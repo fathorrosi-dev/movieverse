@@ -76,26 +76,28 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 flexibleSpace: FlexibleSpaceBar(
                   background:
                       BlocBuilder<TrendingMoviesBloc, TrendingMoviesState>(
-                    builder: (context, state) {
-                      if (state is TrendingMoviesLoading) {
-                        return const Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.blueAccent,
-                          ),
-                        );
-                      } else if (state is TrendingMoviesHasData) {
-                        final movies = state.result;
-                        if (movies.isEmpty) {
-                          return const Center(
-                              child: Text('No movies available'));
-                        }
-                        return CarouselWithIndicator(movies: movies);
-                      } else {
-                        return const Center(
-                            child: Text('Something went wrong'));
-                      }
-                    },
-                  ),
+                        builder: (context, state) {
+                          if (state is TrendingMoviesLoading) {
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.blueAccent,
+                              ),
+                            );
+                          } else if (state is TrendingMoviesHasData) {
+                            final movies = state.result;
+                            if (movies.isEmpty) {
+                              return const Center(
+                                child: Text('No movies available'),
+                              );
+                            }
+                            return CarouselWithIndicator(movies: movies);
+                          } else {
+                            return const Center(
+                              child: Text('Something went wrong'),
+                            );
+                          }
+                        },
+                      ),
                 ),
                 expandedHeight: 277,
                 bottom: AppBar(
@@ -103,46 +105,49 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     width: double.maxFinite,
                     height: 40,
                     child: OutlinedButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const SearchScreen()));
-                        },
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStatePropertyAll<Color>(
-                              $styles.theme.primaryColor),
-                          side: WidgetStatePropertyAll<BorderSide>(
-                              BorderSide(color: $styles.theme.tertiaryColor)),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SearchScreen(),
+                          ),
+                        );
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll<Color>(
+                          $styles.theme.primaryColor,
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.search,
-                              color: $styles.theme.tertiaryColor,
-                            ),
-                            const SizedBox(
-                              width: 8,
-                            ),
-                            Text(
-                              "Search for a movie or tv show...",
-                              style: $styles.text.labelLarge,
-                            ),
-                          ],
-                        )),
+                        side: WidgetStatePropertyAll<BorderSide>(
+                          BorderSide(color: $styles.theme.tertiaryColor),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.search,
+                            color: $styles.theme.tertiaryColor,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            "Search for a movie or tv show...",
+                            style: $styles.text.labelLarge,
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                   backgroundColor: $styles.theme.primaryColor,
-                  leading: Builder(builder: (context) {
-                    return IconButton(
+                  leading: Builder(
+                    builder: (context) {
+                      return IconButton(
                         onPressed: () {
                           Scaffold.of(context).openDrawer();
                         },
-                        icon: const Icon(
-                          Icons.menu,
-                          color: Colors.white,
-                        ));
-                  }),
+                        icon: const Icon(Icons.menu, color: Colors.white),
+                      );
+                    },
+                  ),
                 ),
               ),
             ];
@@ -155,10 +160,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   padding: const EdgeInsets.only(left: 16),
                   child: Row(
                     children: [
-                      Text(
-                        'Trending',
-                        style: $styles.text.headlineMedium,
-                      ),
+                      Text('Trending', style: $styles.text.headlineMedium),
                       TabBar(
                         labelPadding: const EdgeInsets.only(left: 20),
                         controller: _tabController,
@@ -170,12 +172,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         labelStyle: $styles.text.labelLarge,
                         dividerColor: $styles.theme.primaryColor,
                         tabs: const [
-                          Tab(
-                            text: "Movie",
-                          ),
-                          Tab(
-                            text: "Tv Series",
-                          ),
+                          Tab(text: "Movie"),
+                          Tab(text: "Tv Series"),
                         ],
                       ),
                     ],
@@ -189,33 +187,35 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     controller: _tabController,
                     children: [
                       BlocBuilder<TrendingMoviesBloc, TrendingMoviesState>(
-                          builder: (_, state) {
-                        if (state is TrendingMoviesLoading) {
-                          return const Center(
-                            child: CircularProgressIndicator(
-                              color: Colors.blueAccent,
-                            ),
-                          );
-                        } else if (state is TrendingMoviesHasData) {
-                          return MovieCard(state.result);
-                        } else {
-                          return const Text('Something went wrong');
-                        }
-                      }),
+                        builder: (_, state) {
+                          if (state is TrendingMoviesLoading) {
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.blueAccent,
+                              ),
+                            );
+                          } else if (state is TrendingMoviesHasData) {
+                            return MovieCard(state.result);
+                          } else {
+                            return const Text('Something went wrong');
+                          }
+                        },
+                      ),
                       BlocBuilder<TrendingTvBloc, TrendingTvState>(
-                          builder: (_, state) {
-                        if (state is TrendingTvLoading) {
-                          return const Center(
-                            child: CircularProgressIndicator(
-                              color: Colors.blueAccent,
-                            ),
-                          );
-                        } else if (state is TrendingTvHasData) {
-                          return TvCard(state.result);
-                        } else {
-                          return const Text('Something went wrong');
-                        }
-                      }),
+                        builder: (_, state) {
+                          if (state is TrendingTvLoading) {
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.blueAccent,
+                              ),
+                            );
+                          } else if (state is TrendingTvHasData) {
+                            return TvCard(state.result);
+                          } else {
+                            return const Text('Something went wrong');
+                          }
+                        },
+                      ),
                     ],
                   ),
                 ),
@@ -224,10 +224,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   padding: const EdgeInsets.only(left: 16),
                   child: Row(
                     children: [
-                      Text(
-                        'Discover',
-                        style: $styles.text.headlineMedium,
-                      ),
+                      Text('Discover', style: $styles.text.headlineMedium),
                       TabBar(
                         labelPadding: const EdgeInsets.only(left: 20),
                         controller: _thirdTabController,
@@ -239,12 +236,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         labelStyle: $styles.text.labelLarge,
                         dividerColor: $styles.theme.primaryColor,
                         tabs: const [
-                          Tab(
-                            text: "Movie",
-                          ),
-                          Tab(
-                            text: "Tv Series",
-                          ),
+                          Tab(text: "Movie"),
+                          Tab(text: "Tv Series"),
                         ],
                       ),
                     ],
@@ -258,33 +251,35 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     controller: _thirdTabController,
                     children: [
                       BlocBuilder<DiscoverMoviesBloc, DiscoverMoviesState>(
-                          builder: (_, state) {
-                        if (state is DiscoverMoviesLoading) {
-                          return const Center(
-                            child: CircularProgressIndicator(
-                              color: Colors.blueAccent,
-                            ),
-                          );
-                        } else if (state is DiscoverMoviesHasData) {
-                          return MovieCard(state.result);
-                        } else {
-                          return const Text('Something went wrong');
-                        }
-                      }),
+                        builder: (_, state) {
+                          if (state is DiscoverMoviesLoading) {
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.blueAccent,
+                              ),
+                            );
+                          } else if (state is DiscoverMoviesHasData) {
+                            return MovieCard(state.result);
+                          } else {
+                            return const Text('Something went wrong');
+                          }
+                        },
+                      ),
                       BlocBuilder<DiscoverTvBloc, DiscoverTvState>(
-                          builder: (_, state) {
-                        if (state is DiscoverTvLoading) {
-                          return const Center(
-                            child: CircularProgressIndicator(
-                              color: Colors.blueAccent,
-                            ),
-                          );
-                        } else if (state is DiscoverTvHasData) {
-                          return TvCard(state.result);
-                        } else {
-                          return const Text('Something went wrong');
-                        }
-                      }),
+                        builder: (_, state) {
+                          if (state is DiscoverTvLoading) {
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.blueAccent,
+                              ),
+                            );
+                          } else if (state is DiscoverTvHasData) {
+                            return TvCard(state.result);
+                          } else {
+                            return const Text('Something went wrong');
+                          }
+                        },
+                      ),
                     ],
                   ),
                 ),
@@ -293,10 +288,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   padding: const EdgeInsets.only(left: 16),
                   child: Row(
                     children: [
-                      Text(
-                        'Upcoming',
-                        style: $styles.text.headlineMedium,
-                      ),
+                      Text('Upcoming', style: $styles.text.headlineMedium),
                       TabBar(
                         labelPadding: const EdgeInsets.only(left: 20),
                         controller: _secondTabController,
@@ -308,12 +300,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         labelStyle: $styles.text.labelLarge,
                         dividerColor: $styles.theme.primaryColor,
                         tabs: const [
-                          Tab(
-                            text: "Movie",
-                          ),
-                          Tab(
-                            text: "Tv Series",
-                          ),
+                          Tab(text: "Movie"),
+                          Tab(text: "Tv Series"),
                         ],
                       ),
                     ],
@@ -327,37 +315,39 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     controller: _secondTabController,
                     children: [
                       BlocBuilder<UpcomingMoviesBloc, UpcomingMoviesState>(
-                          builder: (_, state) {
-                        if (state is UpcomingMoviesLoading) {
-                          return const Center(
-                            child: CircularProgressIndicator(
-                              color: Colors.blueAccent,
-                            ),
-                          );
-                        } else if (state is UpcomingMoviesHasData) {
-                          return MovieCard(state.result);
-                        } else {
-                          return const Text('Something went wrong');
-                        }
-                      }),
+                        builder: (_, state) {
+                          if (state is UpcomingMoviesLoading) {
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.blueAccent,
+                              ),
+                            );
+                          } else if (state is UpcomingMoviesHasData) {
+                            return MovieCard(state.result);
+                          } else {
+                            return const Text('Something went wrong');
+                          }
+                        },
+                      ),
                       BlocBuilder<OnTheAirTvBloc, OnTheAirTvState>(
-                          builder: (_, state) {
-                        if (state is OnTheAirTvLoading) {
-                          return const Center(
-                            child: CircularProgressIndicator(
-                              color: Colors.blueAccent,
-                            ),
-                          );
-                        } else if (state is OnTheAirTvHasData) {
-                          return TvCard(state.result);
-                        } else {
-                          return const Text('Something went wrong');
-                        }
-                      }),
+                        builder: (_, state) {
+                          if (state is OnTheAirTvLoading) {
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.blueAccent,
+                              ),
+                            );
+                          } else if (state is OnTheAirTvHasData) {
+                            return TvCard(state.result);
+                          } else {
+                            return const Text('Something went wrong');
+                          }
+                        },
+                      ),
                     ],
                   ),
                 ),
-                Gap($styles.insets.sm)
+                Gap($styles.insets.sm),
               ],
             ),
           ),

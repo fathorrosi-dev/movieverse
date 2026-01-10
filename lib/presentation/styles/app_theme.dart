@@ -28,12 +28,11 @@ class AppTheme extends ThemeExtension<AppTheme> {
     Color? primaryColor,
     Color? tertiaryColor,
     Color? neutralColor,
-  }) =>
-      AppTheme(
-        primaryColor: primaryColor ?? this.primaryColor,
-        tertiaryColor: tertiaryColor ?? this.tertiaryColor,
-        neutralColor: neutralColor ?? this.neutralColor,
-      );
+  }) => AppTheme(
+    primaryColor: primaryColor ?? this.primaryColor,
+    tertiaryColor: tertiaryColor ?? this.tertiaryColor,
+    neutralColor: neutralColor ?? this.neutralColor,
+  );
 
   ThemeData toThemeData() {
     // Buat DynamicScheme dan konversikan ke ColorScheme.
@@ -43,7 +42,9 @@ class AppTheme extends ThemeExtension<AppTheme> {
 
   @override
   ThemeExtension<AppTheme> lerp(
-      covariant ThemeExtension<AppTheme>? other, double t) {
+    covariant ThemeExtension<AppTheme>? other,
+    double t,
+  ) {
     if (other is! AppTheme) return this;
     return AppTheme(
       primaryColor: Color.lerp(primaryColor, other.primaryColor, t)!,
@@ -62,16 +63,16 @@ class AppTheme extends ThemeExtension<AppTheme> {
       textSelectionTheme: TextSelectionThemeData(cursorColor: tertiaryColor),
       scaffoldBackgroundColor: primaryColor,
       navigationBarTheme: NavigationBarThemeData(
-        labelTextStyle: WidgetStateProperty.resolveWith<TextStyle?>(
-          (Set<WidgetState> states) {
-            // Mengembalikan TextStyle yang sesuai dengan state widget
-            if (states.contains(WidgetState.selected)) {
-              return $styles.text.labelSmall.copyWith(color: tertiaryColor);
-            } else {
-              return $styles.text.labelLarge.copyWith(color: Colors.grey);
-            }
-          },
-        ),
+        labelTextStyle: WidgetStateProperty.resolveWith<TextStyle?>((
+          Set<WidgetState> states,
+        ) {
+          // Mengembalikan TextStyle yang sesuai dengan state widget
+          if (states.contains(WidgetState.selected)) {
+            return $styles.text.labelSmall.copyWith(color: tertiaryColor);
+          } else {
+            return $styles.text.labelLarge.copyWith(color: Colors.grey);
+          }
+        }),
       ),
       textTheme: txtTheme,
     );
@@ -188,56 +189,145 @@ class _Text {
   _Text(this._scale);
   final double _scale;
 
-  final primaryTextTheme = GoogleFonts.playfairDisplaySc();
-  final secondaryTextTheme = GoogleFonts.robotoCondensed();
-  final tertiaryTextTheme = GoogleFonts.montserrat();
-  final quaternaryTextTheme = GoogleFonts.roboto();
+  // Font families
+  final displayFont = GoogleFonts.sora();
+  final baseFont = GoogleFonts.inter();
 
-  late final displayLarge = _createFont(primaryTextTheme,
-      sizePx: 57, heightPx: 64, weight: FontWeight.w400);
-  late final displayMedium = _createFont(primaryTextTheme,
-      sizePx: 45, heightPx: 52, weight: FontWeight.w400);
-  late final displaySmall = _createFont(primaryTextTheme,
-      sizePx: 36, heightPx: 44, weight: FontWeight.w400);
-  late final headlineLarge = _createFont(secondaryTextTheme,
-      sizePx: 32, heightPx: 40, weight: FontWeight.w400);
-  late final headlineMedium = _createFont(secondaryTextTheme,
-      sizePx: 28, heightPx: 36, weight: FontWeight.w400);
-  late final headlineSmall = _createFont(secondaryTextTheme,
-      sizePx: 24, heightPx: 32, weight: FontWeight.w400);
-  late final titleLarge = _createFont(tertiaryTextTheme,
-      sizePx: 22, heightPx: 28, weight: FontWeight.w400);
-  late final titleMedium = _createFont(tertiaryTextTheme,
-      sizePx: 16, heightPx: 24, weight: FontWeight.w500);
-  late final titleSmall = _createFont(tertiaryTextTheme,
-      sizePx: 14, heightPx: 20, weight: FontWeight.w500);
-  late final labelLarge = _createFont(quaternaryTextTheme,
-      sizePx: 14, heightPx: 20, weight: FontWeight.w500);
-  late final labelMedium = _createFont(quaternaryTextTheme,
-      sizePx: 12, heightPx: 16, weight: FontWeight.w500);
-  late final labelSmall = _createFont(quaternaryTextTheme,
-      sizePx: 11, heightPx: 16, weight: FontWeight.w500);
-  late final bodyLarge = _createFont(quaternaryTextTheme,
-      sizePx: 16, heightPx: 24, weight: FontWeight.w400);
-  late final bodyMedium = _createFont(quaternaryTextTheme,
-      sizePx: 14, heightPx: 20, weight: FontWeight.w400);
-  late final bodySmall = _createFont(quaternaryTextTheme,
-      sizePx: 12, heightPx: 16, weight: FontWeight.w400);
+  // DISPLAY (Hero title, page title besar)
+  late final displayLarge = _createFont(
+    displayFont,
+    sizePx: 56,
+    heightPx: 64,
+    weight: FontWeight.w700,
+    spacingPc: -2,
+  );
 
-  TextStyle _createFont(TextStyle style,
-      {required double sizePx,
-      double? heightPx,
-      double? spacingPc,
-      FontWeight? weight}) {
+  late final displayMedium = _createFont(
+    displayFont,
+    sizePx: 44,
+    heightPx: 52,
+    weight: FontWeight.w600,
+    spacingPc: -1.5,
+  );
+
+  late final displaySmall = _createFont(
+    displayFont,
+    sizePx: 36,
+    heightPx: 44,
+    weight: FontWeight.w600,
+    spacingPc: -1,
+  );
+
+  // HEADLINE (Section title)
+  late final headlineLarge = _createFont(
+    baseFont,
+    sizePx: 28,
+    heightPx: 36,
+    weight: FontWeight.w600,
+    spacingPc: -0.5,
+  );
+
+  late final headlineMedium = _createFont(
+    baseFont,
+    sizePx: 24,
+    heightPx: 32,
+    weight: FontWeight.w600,
+  );
+
+  late final headlineSmall = _createFont(
+    baseFont,
+    sizePx: 20,
+    heightPx: 28,
+    weight: FontWeight.w500,
+  );
+
+  // TITLE (Card title, dialog title)
+  late final titleLarge = _createFont(
+    baseFont,
+    sizePx: 18,
+    heightPx: 24,
+    weight: FontWeight.w500,
+  );
+
+  late final titleMedium = _createFont(
+    baseFont,
+    sizePx: 16,
+    heightPx: 22,
+    weight: FontWeight.w500,
+  );
+
+  late final titleSmall = _createFont(
+    baseFont,
+    sizePx: 14,
+    heightPx: 20,
+    weight: FontWeight.w500,
+  );
+
+  // BODY (Description, synopsis)
+  late final bodyLarge = _createFont(
+    baseFont,
+    sizePx: 16,
+    heightPx: 24,
+    weight: FontWeight.w400,
+  );
+
+  late final bodyMedium = _createFont(
+    baseFont,
+    sizePx: 14,
+    heightPx: 20,
+    weight: FontWeight.w400,
+  );
+
+  late final bodySmall = _createFont(
+    baseFont,
+    sizePx: 12,
+    heightPx: 18,
+    weight: FontWeight.w400,
+  );
+
+  // LABEL (Button, chip, tag)
+  late final labelLarge = _createFont(
+    baseFont,
+    sizePx: 14,
+    heightPx: 20,
+    weight: FontWeight.w600,
+    spacingPc: 2,
+  );
+
+  late final labelMedium = _createFont(
+    baseFont,
+    sizePx: 12,
+    heightPx: 16,
+    weight: FontWeight.w600,
+    spacingPc: 2,
+  );
+
+  late final labelSmall = _createFont(
+    baseFont,
+    sizePx: 11,
+    heightPx: 16,
+    weight: FontWeight.w600,
+    spacingPc: 2,
+  );
+
+  TextStyle _createFont(
+    TextStyle style, {
+    required double sizePx,
+    double? heightPx,
+    double? spacingPc,
+    FontWeight? weight,
+  }) {
     sizePx *= _scale;
     if (heightPx != null) {
       heightPx *= _scale;
     }
+
     return style.copyWith(
       fontSize: sizePx,
-      height: heightPx != null ? (heightPx / sizePx) : style.height,
-      letterSpacing:
-          spacingPc != null ? sizePx * spacingPc * 0.01 : style.letterSpacing,
+      height: heightPx != null ? heightPx / sizePx : style.height,
+      letterSpacing: spacingPc != null
+          ? sizePx * spacingPc * 0.01
+          : style.letterSpacing,
       fontWeight: weight,
       color: Colors.white,
     );

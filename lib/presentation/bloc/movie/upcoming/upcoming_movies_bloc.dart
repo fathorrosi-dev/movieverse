@@ -15,7 +15,9 @@ class UpcomingMoviesBloc
   }
 
   void _fetchUpcomingMovies(
-      FetchUpcomingMovies event, Emitter<UpcomingMoviesState> emit) async {
+    FetchUpcomingMovies event,
+    Emitter<UpcomingMoviesState> emit,
+  ) async {
     emit(UpcomingMoviesLoading());
     final result = await getUpcomingMovies.execute();
     result.fold(

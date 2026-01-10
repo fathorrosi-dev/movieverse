@@ -22,7 +22,10 @@ class AppScrollBehavior extends ScrollBehavior {
   // TODO: Finalize scrollbar strategy (Do we use them at all? Where specifically?)
   @override
   Widget buildScrollbar(
-      BuildContext context, Widget child, ScrollableDetails details) {
+    BuildContext context,
+    Widget child,
+    ScrollableDetails details,
+  ) {
     //return child;
     return PlatformInfo.isAndroid
         ? RawScrollbar(controller: details.controller, child: child)

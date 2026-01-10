@@ -1,10 +1,14 @@
 import 'package:rive/rive.dart';
 
 class RiveUtils {
-  static SMIBool getRiveInput(Artboard artboard,
-      {required String stateMachineName}) {
-    StateMachineController? controller =
-        StateMachineController.fromArtboard(artboard, stateMachineName);
+  static SMIBool getRiveInput(
+    Artboard artboard, {
+    required String stateMachineName,
+  }) {
+    StateMachineController? controller = StateMachineController.fromArtboard(
+      artboard,
+      stateMachineName,
+    );
 
     artboard.addController(controller!);
 
@@ -13,11 +17,8 @@ class RiveUtils {
 
   static void chnageSMIBoolState(SMIBool input) {
     input.change(true);
-    Future.delayed(
-      const Duration(seconds: 1),
-      () {
-        input.change(false);
-      },
-    );
+    Future.delayed(const Duration(seconds: 1), () {
+      input.change(false);
+    });
   }
 }

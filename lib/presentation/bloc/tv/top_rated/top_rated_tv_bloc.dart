@@ -14,7 +14,9 @@ class TopRatedTvBloc extends Bloc<TopRatedTvEvent, TopRatedTvState> {
   }
 
   void _fetchTopRatedTv(
-      FetchTopRatedTv event, Emitter<TopRatedTvState> emit) async {
+    FetchTopRatedTv event,
+    Emitter<TopRatedTvState> emit,
+  ) async {
     emit(TopRatedTvLoading());
     final result = await getTopRatedTv.execute();
     result.fold(

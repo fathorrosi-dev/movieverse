@@ -25,10 +25,7 @@ class AppLogic {
     /// Disable landscape layout on smaller form factors
     bool isSmall = MediaQuery.of(context).size.shortestSide < 600;
     supportedOrientations = isSmall
-        ? [
-            DeviceOrientation.portraitUp,
-            DeviceOrientation.portraitDown,
-          ]
+        ? [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]
         : [
             DeviceOrientation.portraitUp,
             DeviceOrientation.portraitDown,

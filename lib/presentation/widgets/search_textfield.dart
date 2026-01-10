@@ -28,20 +28,29 @@ class SearchTextField extends StatelessWidget {
       decoration: InputDecoration(
         prefixIconColor: $styles.theme.tertiaryColor,
         hintText: 'Search for a movie or tv show...',
-        hintStyle:
-            $styles.text.bodyMedium.copyWith(color: $styles.theme.neutralColor),
+        hintStyle: $styles.text.bodyMedium.copyWith(
+          color: $styles.theme.neutralColor,
+        ),
         hoverColor: $styles.theme.neutralColor,
         focusColor: $styles.theme.tertiaryColor,
         prefixIcon: Icon(icon),
         suffixIcon: suffixIcon,
         focusedBorder: OutlineInputBorder(
-            borderSide:
-                BorderSide(color: $styles.theme.tertiaryColor, width: 1.0)),
+          borderSide: BorderSide(
+            color: $styles.theme.tertiaryColor,
+            width: 1.0,
+          ),
+        ),
         enabledBorder: OutlineInputBorder(
-            borderSide:
-                BorderSide(color: $styles.theme.tertiaryColor, width: 1.0)),
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          borderSide: BorderSide(
+            color: $styles.theme.tertiaryColor,
+            width: 1.0,
+          ),
+        ),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 12,
+        ),
       ),
     );
   }

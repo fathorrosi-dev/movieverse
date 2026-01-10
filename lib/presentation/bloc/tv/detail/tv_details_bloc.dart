@@ -12,10 +12,8 @@ class TvDetailsBloc extends Bloc<TvDetailsEvent, TvDetailsState> {
   final GetTvSeriesDetail getTvDetail;
   final GetTvSeriesRecommendations getTvRecommendations;
 
-  TvDetailsBloc({
-    required this.getTvDetail,
-    required this.getTvRecommendations,
-  }) : super((TvDetailsEmpty())) {
+  TvDetailsBloc({required this.getTvDetail, required this.getTvRecommendations})
+    : super((TvDetailsEmpty())) {
     on<FetchTvDetails>(_fetchTvDetail);
   }
 
@@ -34,9 +32,8 @@ class TvDetailsBloc extends Bloc<TvDetailsEvent, TvDetailsState> {
         recommendationResult.fold(
           (failure) =>
               emit(TvDetailsError(NetworkExceptions.getErrorMessage(failure))),
-          (recommendationTvs) => emit(
-            TvDetailsHasData(detailTv, recommendationTvs),
-          ),
+          (recommendationTvs) =>
+              emit(TvDetailsHasData(detailTv, recommendationTvs)),
         );
       },
     );

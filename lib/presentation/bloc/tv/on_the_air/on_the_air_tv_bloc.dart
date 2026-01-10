@@ -14,7 +14,9 @@ class OnTheAirTvBloc extends Bloc<OnTheAirTvEvent, OnTheAirTvState> {
   }
 
   void _fetchOnTheAirTv(
-      FetchOnTheAirTv event, Emitter<OnTheAirTvState> emit) async {
+    FetchOnTheAirTv event,
+    Emitter<OnTheAirTvState> emit,
+  ) async {
     emit(OnTheAirTvLoading());
     final result = await getOnTheAirTv.execute();
     result.fold(

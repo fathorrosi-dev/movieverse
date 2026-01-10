@@ -11,7 +11,8 @@ class GetCredentialsBloc
   GetCredentialsBloc(this.getCredentials) : super(GetCredentialsInitial());
 
   Stream<GetCredentialsState> mapEventToState(
-      GetCredentialsEvent event) async* {
+    GetCredentialsEvent event,
+  ) async* {
     if (event is FetchCredentials) {
       yield GetCredentialsLoading();
       try {

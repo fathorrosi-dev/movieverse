@@ -15,7 +15,9 @@ class GetUserDataBloc extends Bloc<GetUserDataEvent, GetUserDataState> {
   }
 
   void _getUserData(
-      GetUserDataRequested event, Emitter<GetUserDataState> emit) async {
+    GetUserDataRequested event,
+    Emitter<GetUserDataState> emit,
+  ) async {
     emit(GetUserDataLoading());
     final result = await getUserData.execute();
     result.fold(

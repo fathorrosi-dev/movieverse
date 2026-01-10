@@ -22,32 +22,28 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: $styles.theme.primaryColor,
-          title: SizedBox(
-              width: double.maxFinite,
-              height: 40,
-              child: SearchTextField(
-                controller: searchController,
-                icon: Icons.search,
-                onChanged: (query) {
-                  context
-                      .read<MoviesSearchBloc>()
-                      .add(MoviesOnQueryChanged(query));
-                  context.read<TvSearchBloc>().add(TvOnQueryChanged(query));
-                },
-              )),
+      appBar: AppBar(
+        backgroundColor: $styles.theme.primaryColor,
+        title: SizedBox(
+          width: double.maxFinite,
+          height: 40,
+          child: SearchTextField(
+            controller: searchController,
+            icon: Icons.search,
+            onChanged: (query) {
+              context.read<MoviesSearchBloc>().add(MoviesOnQueryChanged(query));
+              context.read<TvSearchBloc>().add(TvOnQueryChanged(query));
+            },
+          ),
         ),
-        body: SafeArea(
-            child: Padding(
+      ),
+      body: SafeArea(
+        child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Search Result',
-                style: $styles.text.headlineMedium,
-              ),
+              Text('Search Result', style: $styles.text.headlineMedium),
               BlocBuilder<MoviesSearchBloc, MoviesSearchState>(
                 builder: (_, movieState) {
                   return BlocBuilder<TvSearchBloc, TvSearchState>(
@@ -55,21 +51,19 @@ class _SearchScreenState extends State<SearchScreen> {
                       if (movieState is MoviesSearchLoading ||
                           tvState is TvSearchLoading) {
                         return const Expanded(
-                          child: Center(
-                            child: CircularProgressIndicator(),
-                          ),
+                          child: Center(child: CircularProgressIndicator()),
                         );
                       } else if (movieState is MoviesSearchHasData ||
                           tvState is TvSearchHasData) {
                         final List<dynamic> movieResults =
                             movieState is MoviesSearchHasData
-                                ? movieState.result
-                                : [];
+                            ? movieState.result
+                            : [];
                         final List<dynamic> tvResults =
                             tvState is TvSearchHasData ? tvState.result : [];
                         final List<dynamic> results = [
                           ...movieResults,
-                          ...tvResults
+                          ...tvResults,
                         ];
                         return Expanded(
                           child: results.isNotEmpty
@@ -89,7 +83,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                 )
                               : const Center(
                                   child: Text(
-                                      'Cannot Found Movies or TV Series :('),
+                                    'Cannot Found Movies or TV Series :(',
+                                  ),
                                 ),
                         );
                       } else {
@@ -101,6 +96,8 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             ],
           ),
-        )));
+        ),
+      ),
+    );
   }
 }

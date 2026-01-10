@@ -59,79 +59,33 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         // movie bloc
-        BlocProvider(
-          create: (context) => di.locator<MovieDetailsBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.locator<DiscoverMoviesBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.locator<NowPlayingMoviesBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.locator<PopularMoviesBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.locator<MoviesSearchBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.locator<TopRatedMoviesBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.locator<TrendingMoviesBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.locator<UpcomingMoviesBloc>(),
-        ),
+        BlocProvider(create: (context) => di.locator<MovieDetailsBloc>()),
+        BlocProvider(create: (context) => di.locator<DiscoverMoviesBloc>()),
+        BlocProvider(create: (context) => di.locator<NowPlayingMoviesBloc>()),
+        BlocProvider(create: (context) => di.locator<PopularMoviesBloc>()),
+        BlocProvider(create: (context) => di.locator<MoviesSearchBloc>()),
+        BlocProvider(create: (context) => di.locator<TopRatedMoviesBloc>()),
+        BlocProvider(create: (context) => di.locator<TrendingMoviesBloc>()),
+        BlocProvider(create: (context) => di.locator<UpcomingMoviesBloc>()),
         // Tv Bloc
-        BlocProvider(
-          create: (context) => di.locator<AiringTodayTvBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.locator<TvDetailsBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.locator<DiscoverTvBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.locator<OnTheAirTvBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.locator<PopularTvBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.locator<TvSearchBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.locator<TopRatedTvBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.locator<TrendingTvBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.locator<GetWatchlistBloc>(),
-        ),
+        BlocProvider(create: (context) => di.locator<AiringTodayTvBloc>()),
+        BlocProvider(create: (context) => di.locator<TvDetailsBloc>()),
+        BlocProvider(create: (context) => di.locator<DiscoverTvBloc>()),
+        BlocProvider(create: (context) => di.locator<OnTheAirTvBloc>()),
+        BlocProvider(create: (context) => di.locator<PopularTvBloc>()),
+        BlocProvider(create: (context) => di.locator<TvSearchBloc>()),
+        BlocProvider(create: (context) => di.locator<TopRatedTvBloc>()),
+        BlocProvider(create: (context) => di.locator<TrendingTvBloc>()),
+        BlocProvider(create: (context) => di.locator<GetWatchlistBloc>()),
         BlocProvider(
           create: (context) => di.locator<RemoveFromWatchlistBloc>(),
         ),
-        BlocProvider(
-          create: (context) => di.locator<WatchlistBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.locator<GetUserDataBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.locator<RegisterUserBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.locator<LoginUserBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.locator<SaveCredentialsBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => di.locator<GetCredentialsBloc>(),
-        ),
+        BlocProvider(create: (context) => di.locator<WatchlistBloc>()),
+        BlocProvider(create: (context) => di.locator<GetUserDataBloc>()),
+        BlocProvider(create: (context) => di.locator<RegisterUserBloc>()),
+        BlocProvider(create: (context) => di.locator<LoginUserBloc>()),
+        BlocProvider(create: (context) => di.locator<SaveCredentialsBloc>()),
+        BlocProvider(create: (context) => di.locator<GetCredentialsBloc>()),
         BlocProvider(create: (context) => di.locator<OnboardingBloc>()),
         BlocProvider(create: (context) => di.locator<AutoLoginBloc>()),
         BlocProvider(create: (context) => di.locator<LogoutUserBloc>()),

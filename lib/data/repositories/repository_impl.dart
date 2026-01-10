@@ -19,9 +19,10 @@ class RepositoryImpl implements Repository {
       final result = await remoteDataSource.getPopularMovies();
       const networkException = NetworkExceptions.unexpectedError();
       return result.when(
-          success: (data) =>
-              Right(data!.map((model) => model.toEntity()).toList()),
-          failure: (error) => const Left(networkException));
+        success: (data) =>
+            Right(data!.map((model) => model.toEntity()).toList()),
+        failure: (error) => const Left(networkException),
+      );
     } catch (e) {
       return const Left(NetworkExceptions.unexpectedError());
     }
@@ -33,9 +34,10 @@ class RepositoryImpl implements Repository {
       final result = await remoteDataSource.getTopRatedMovies();
       const networkException = NetworkExceptions.unexpectedError();
       return result.when(
-          success: (data) =>
-              Right(data!.map((model) => model.toEntity()).toList()),
-          failure: (error) => const Left(networkException));
+        success: (data) =>
+            Right(data!.map((model) => model.toEntity()).toList()),
+        failure: (error) => const Left(networkException),
+      );
     } catch (e) {
       return const Left(NetworkExceptions.unexpectedError());
     }
@@ -47,9 +49,10 @@ class RepositoryImpl implements Repository {
       final result = await remoteDataSource.getNowPlayingMovies();
       const networkException = NetworkExceptions.unexpectedError();
       return result.when(
-          success: (data) =>
-              Right(data!.map((model) => model.toEntity()).toList()),
-          failure: (error) => const Left(networkException));
+        success: (data) =>
+            Right(data!.map((model) => model.toEntity()).toList()),
+        failure: (error) => const Left(networkException),
+      );
     } catch (e) {
       return const Left(NetworkExceptions.unexpectedError());
     }
@@ -61,9 +64,10 @@ class RepositoryImpl implements Repository {
       final result = await remoteDataSource.getDiscoverMovies();
       const networkException = NetworkExceptions.unexpectedError();
       return result.when(
-          success: (data) =>
-              Right(data!.map((model) => model.toEntity()).toList()),
-          failure: (error) => const Left(networkException));
+        success: (data) =>
+            Right(data!.map((model) => model.toEntity()).toList()),
+        failure: (error) => const Left(networkException),
+      );
     } catch (e) {
       return const Left(NetworkExceptions.unexpectedError());
     }
@@ -75,9 +79,10 @@ class RepositoryImpl implements Repository {
       final result = await remoteDataSource.getTrendingMovies();
       const networkException = NetworkExceptions.unexpectedError();
       return result.when(
-          success: (data) =>
-              Right(data!.map((model) => model.toEntity()).toList()),
-          failure: (error) => const Left(networkException));
+        success: (data) =>
+            Right(data!.map((model) => model.toEntity()).toList()),
+        failure: (error) => const Left(networkException),
+      );
     } catch (e) {
       return const Left(NetworkExceptions.unexpectedError());
     }
@@ -89,9 +94,10 @@ class RepositoryImpl implements Repository {
       final result = await remoteDataSource.getUpcomingMovies();
       const networkException = NetworkExceptions.unexpectedError();
       return result.when(
-          success: (data) =>
-              Right(data!.map((model) => model.toEntity()).toList()),
-          failure: (error) => const Left(networkException));
+        success: (data) =>
+            Right(data!.map((model) => model.toEntity()).toList()),
+        failure: (error) => const Left(networkException),
+      );
     } catch (e) {
       return const Left(NetworkExceptions.unexpectedError());
     }
@@ -103,8 +109,9 @@ class RepositoryImpl implements Repository {
       final result = await remoteDataSource.getMovieDetail(id);
       const networkException = NetworkExceptions.unexpectedError();
       return result.when(
-          success: (data) => Right(data!.toEntity()),
-          failure: (error) => const Left(networkException));
+        success: (data) => Right(data!.toEntity()),
+        failure: (error) => const Left(networkException),
+      );
     } catch (e) {
       return const Left(NetworkExceptions.unexpectedError());
     }
@@ -112,14 +119,16 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<Either<NetworkExceptions, List<Movie>>> getMovieRecommendations(
-      int id) async {
+    int id,
+  ) async {
     try {
       final result = await remoteDataSource.getMovieRecommendations(id);
       const networkException = NetworkExceptions.unexpectedError();
       return result.when(
-          success: (data) =>
-              Right(data!.map((model) => model.toEntity()).toList()),
-          failure: (error) => const Left(networkException));
+        success: (data) =>
+            Right(data!.map((model) => model.toEntity()).toList()),
+        failure: (error) => const Left(networkException),
+      );
     } catch (e) {
       return const Left(NetworkExceptions.unexpectedError());
     }
@@ -127,14 +136,16 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<Either<NetworkExceptions, List<Movie>>> searchMovies(
-      String query) async {
+    String query,
+  ) async {
     try {
       final result = await remoteDataSource.searchMovies(query);
       const networkException = NetworkExceptions.unexpectedError();
       return result.when(
-          success: (data) =>
-              Right(data!.map((model) => model.toEntity()).toList()),
-          failure: (error) => const Left(networkException));
+        success: (data) =>
+            Right(data!.map((model) => model.toEntity()).toList()),
+        failure: (error) => const Left(networkException),
+      );
     } catch (e) {
       return const Left(NetworkExceptions.unexpectedError());
     }
@@ -142,14 +153,15 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<Either<NetworkExceptions, List<TvSeries>>>
-      getAiringTodayTvSeries() async {
+  getAiringTodayTvSeries() async {
     try {
       final result = await remoteDataSource.getAiringTodayTvSeries();
       const networkException = NetworkExceptions.unexpectedError();
       return result.when(
-          success: (data) =>
-              Right(data!.map((model) => model.toEntity()).toList()),
-          failure: (error) => const Left(networkException));
+        success: (data) =>
+            Right(data!.map((model) => model.toEntity()).toList()),
+        failure: (error) => const Left(networkException),
+      );
     } catch (e) {
       return const Left(NetworkExceptions.unexpectedError());
     }
@@ -161,9 +173,10 @@ class RepositoryImpl implements Repository {
       final result = await remoteDataSource.getPopularTvSeries();
       const networkException = NetworkExceptions.unexpectedError();
       return result.when(
-          success: (data) =>
-              Right(data!.map((model) => model.toEntity()).toList()),
-          failure: (error) => const Left(networkException));
+        success: (data) =>
+            Right(data!.map((model) => model.toEntity()).toList()),
+        failure: (error) => const Left(networkException),
+      );
     } catch (e) {
       return const Left(NetworkExceptions.unexpectedError());
     }
@@ -171,14 +184,15 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<Either<NetworkExceptions, List<TvSeries>>>
-      getTopRatedTvSeries() async {
+  getTopRatedTvSeries() async {
     try {
       final result = await remoteDataSource.getTopRatedTvSeries();
       const networkException = NetworkExceptions.unexpectedError();
       return result.when(
-          success: (data) =>
-              Right(data!.map((model) => model.toEntity()).toList()),
-          failure: (error) => const Left(networkException));
+        success: (data) =>
+            Right(data!.map((model) => model.toEntity()).toList()),
+        failure: (error) => const Left(networkException),
+      );
     } catch (e) {
       return const Left(NetworkExceptions.unexpectedError());
     }
@@ -186,14 +200,15 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<Either<NetworkExceptions, List<TvSeries>>>
-      getDiscoverTvSeries() async {
+  getDiscoverTvSeries() async {
     try {
       final result = await remoteDataSource.getDiscoverTvSeries();
       const networkException = NetworkExceptions.unexpectedError();
       return result.when(
-          success: (data) =>
-              Right(data!.map((model) => model.toEntity()).toList()),
-          failure: (error) => const Left(networkException));
+        success: (data) =>
+            Right(data!.map((model) => model.toEntity()).toList()),
+        failure: (error) => const Left(networkException),
+      );
     } catch (e) {
       return const Left(NetworkExceptions.unexpectedError());
     }
@@ -201,14 +216,15 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<Either<NetworkExceptions, List<TvSeries>>>
-      getTrendingTvSeries() async {
+  getTrendingTvSeries() async {
     try {
       final result = await remoteDataSource.getTrendingTvSeries();
       const networkException = NetworkExceptions.unexpectedError();
       return result.when(
-          success: (data) =>
-              Right(data!.map((model) => model.toEntity()).toList()),
-          failure: (error) => const Left(networkException));
+        success: (data) =>
+            Right(data!.map((model) => model.toEntity()).toList()),
+        failure: (error) => const Left(networkException),
+      );
     } catch (e) {
       return const Left(NetworkExceptions.unexpectedError());
     }
@@ -216,14 +232,15 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<Either<NetworkExceptions, List<TvSeries>>>
-      getOnTheAirTvSeries() async {
+  getOnTheAirTvSeries() async {
     try {
       final result = await remoteDataSource.getOnTheAirTvSeries();
       const networkException = NetworkExceptions.unexpectedError();
       return result.when(
-          success: (data) =>
-              Right(data!.map((model) => model.toEntity()).toList()),
-          failure: (error) => const Left(networkException));
+        success: (data) =>
+            Right(data!.map((model) => model.toEntity()).toList()),
+        failure: (error) => const Left(networkException),
+      );
     } catch (e) {
       return const Left(NetworkExceptions.unexpectedError());
     }
@@ -231,13 +248,15 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<Either<NetworkExceptions, TvSeriesDetail>> getTvSeriesDetail(
-      int id) async {
+    int id,
+  ) async {
     try {
       final result = await remoteDataSource.getTvSeriesDetail(id);
       const networkException = NetworkExceptions.unexpectedError();
       return result.when(
-          success: (data) => Right(data!.toEntity()),
-          failure: (error) => const Left(networkException));
+        success: (data) => Right(data!.toEntity()),
+        failure: (error) => const Left(networkException),
+      );
     } catch (e) {
       return const Left(NetworkExceptions.unexpectedError());
     }
@@ -245,14 +264,16 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<Either<NetworkExceptions, List<TvSeries>>> getTvSeriesRecommendations(
-      int id) async {
+    int id,
+  ) async {
     try {
       final result = await remoteDataSource.getTvSeriesRecommendations(id);
       const networkException = NetworkExceptions.unexpectedError();
       return result.when(
-          success: (data) =>
-              Right(data!.map((model) => model.toEntity()).toList()),
-          failure: (error) => const Left(networkException));
+        success: (data) =>
+            Right(data!.map((model) => model.toEntity()).toList()),
+        failure: (error) => const Left(networkException),
+      );
     } catch (e) {
       return const Left(NetworkExceptions.unexpectedError());
     }
@@ -260,14 +281,16 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<Either<NetworkExceptions, List<TvSeries>>> searchTvSeries(
-      String query) async {
+    String query,
+  ) async {
     try {
       final result = await remoteDataSource.searchTvSeries(query);
       const networkException = NetworkExceptions.unexpectedError();
       return result.when(
-          success: (data) =>
-              Right(data!.map((model) => model.toEntity()).toList()),
-          failure: (error) => const Left(networkException));
+        success: (data) =>
+            Right(data!.map((model) => model.toEntity()).toList()),
+        failure: (error) => const Left(networkException),
+      );
     } catch (e) {
       return const Left(NetworkExceptions.unexpectedError());
     }

@@ -26,7 +26,10 @@ class FirebaseRepositoryImpl implements FirebaseRepository {
 
   @override
   Future<Either<DatabaseException, void>> registerUser(
-      String name, String email, String password) async {
+    String name,
+    String email,
+    String password,
+  ) async {
     try {
       await firebaseHelper.registerUser(name, email, password);
       return const Right(null);
@@ -37,7 +40,9 @@ class FirebaseRepositoryImpl implements FirebaseRepository {
 
   @override
   Future<Either<DatabaseException, void>> loginUser(
-      String email, String password) async {
+    String email,
+    String password,
+  ) async {
     try {
       await firebaseHelper.loginUser(email, password);
       return const Right(null);
@@ -57,11 +62,21 @@ class FirebaseRepositoryImpl implements FirebaseRepository {
   }
 
   @override
-  Future<Either<DatabaseException, String>> addToWatchlist(String id,
-      String name, String posterPath, String release, bool isMovie) async {
+  Future<Either<DatabaseException, String>> addToWatchlist(
+    String id,
+    String name,
+    String posterPath,
+    String release,
+    bool isMovie,
+  ) async {
     try {
       final result = await firebaseHelper.addToWatchlist(
-          id, name, posterPath, release, isMovie);
+        id,
+        name,
+        posterPath,
+        release,
+        isMovie,
+      );
       return Right(result);
     } catch (e) {
       return Left(DatabaseException(e.toString()));
@@ -70,7 +85,8 @@ class FirebaseRepositoryImpl implements FirebaseRepository {
 
   @override
   Future<Either<DatabaseException, String>> removeFromWatchlist(
-      String id) async {
+    String id,
+  ) async {
     try {
       final result = await firebaseHelper.removeFromWatchlist(id);
       return Right(result);
@@ -83,8 +99,9 @@ class FirebaseRepositoryImpl implements FirebaseRepository {
   Future<Either<DatabaseException, List<WatchlistItem>>> getWatchlist() async {
     try {
       final watchlistItemModels = await firebaseHelper.getWatchlist();
-      final watchlistItems =
-          watchlistItemModels.map((model) => model.toEntity()).toList();
+      final watchlistItems = watchlistItemModels
+          .map((model) => model.toEntity())
+          .toList();
 
       return Right(watchlistItems);
     } catch (e) {

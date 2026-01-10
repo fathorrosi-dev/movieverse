@@ -16,11 +16,5 @@ class WatchlistItem extends Equatable {
   });
 
   @override
-  List<Object?> get props => [
-        id,
-        name,
-        posterPath,
-        release,
-        isMovie,
-      ];
+  List<Object?> get props => [id, name, posterPath, release, isMovie];
 }

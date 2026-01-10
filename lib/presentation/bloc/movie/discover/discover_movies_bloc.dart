@@ -15,7 +15,9 @@ class DiscoverMoviesBloc
   }
 
   void _fetchDiscoverMovies(
-      FetchDiscoverMovies event, Emitter<DiscoverMoviesState> emit) async {
+    FetchDiscoverMovies event,
+    Emitter<DiscoverMoviesState> emit,
+  ) async {
     emit(DiscoverMoviesLoading());
     final result = await getDiscoverMovies.execute();
     result.fold(

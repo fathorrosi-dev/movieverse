@@ -20,11 +20,12 @@ class WatchlistItemModel extends Equatable {
   factory WatchlistItemModel.fromDocumentSnapshot(DocumentSnapshot snapshot) {
     final data = snapshot.data() as Map<String, dynamic>;
     return WatchlistItemModel(
-        id: snapshot.id,
-        name: data['name'],
-        posterPath: data['posterPath'],
-        release: data['release'],
-        isMovie: data['isMovie']);
+      id: snapshot.id,
+      name: data['name'],
+      posterPath: data['posterPath'],
+      release: data['release'],
+      isMovie: data['isMovie'],
+    );
   }
 
   Map<String, dynamic> toMap() {
@@ -38,19 +39,14 @@ class WatchlistItemModel extends Equatable {
 
   WatchlistItem toEntity() {
     return WatchlistItem(
-        id: id,
-        name: name,
-        posterPath: posterPath,
-        release: release,
-        isMovie: isMovie);
+      id: id,
+      name: name,
+      posterPath: posterPath,
+      release: release,
+      isMovie: isMovie,
+    );
   }
 
   @override
-  List<Object?> get props => [
-        id,
-        name,
-        posterPath,
-        release,
-        isMovie,
-      ];
+  List<Object?> get props => [id, name, posterPath, release, isMovie];
 }

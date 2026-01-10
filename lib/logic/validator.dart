@@ -17,7 +17,9 @@ class Validator {
   }
 
   static String? validatePasswordConfirm(
-      String? password, String? passwordConfirm) {
+    String? password,
+    String? passwordConfirm,
+  ) {
     if (passwordConfirm == null || passwordConfirm.isEmpty) {
       return 'Password confirmation is required';
     }

@@ -36,10 +36,16 @@ class WatchlistBloc extends Bloc<WatchlistEvent, WatchlistState> {
   ) async {
     emit(AddToWatchlistLoading());
     final result = await addToWatchlist.execute(
-        event.id, event.name, event.posterPath, event.release, event.isMovie);
+      event.id,
+      event.name,
+      event.posterPath,
+      event.release,
+      event.isMovie,
+    );
     final status = await getWatchlistById.execute(event.id.toString());
-    result.fold((failure) => emit(AddToWatchlistFailure(failure.message)),
-        (success) {
+    result.fold((failure) => emit(AddToWatchlistFailure(failure.message)), (
+      success,
+    ) {
       emit(AddToWatchlistSuccess(success));
       emit(CheckWatchlistStatus(status));
     });

@@ -25,8 +25,9 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
   ) async {
     emit(MovieDetailsLoading());
     final detailResult = await getMovieDetail.execute(event.id);
-    final recommendationResult =
-        await getMovieRecommendations.execute(event.id);
+    final recommendationResult = await getMovieRecommendations.execute(
+      event.id,
+    );
     detailResult.fold(
       (failure) =>
           emit(MovieDetailsError(NetworkExceptions.getErrorMessage(failure))),
@@ -34,10 +35,10 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
         emit(MovieDetailsLoading());
         recommendationResult.fold(
           (failure) => emit(
-              MovieDetailsError(NetworkExceptions.getErrorMessage(failure))),
-          (recommendationMovies) => emit(
-            MovieDetailsHasData(detailMovie, recommendationMovies),
+            MovieDetailsError(NetworkExceptions.getErrorMessage(failure)),
           ),
+          (recommendationMovies) =>
+              emit(MovieDetailsHasData(detailMovie, recommendationMovies)),
         );
       },
     );

@@ -14,7 +14,8 @@ abstract class Repository {
   Future<Either<NetworkExceptions, List<Movie>>> getUpcomingMovies();
   Future<Either<NetworkExceptions, MovieDetail>> getMovieDetail(int id);
   Future<Either<NetworkExceptions, List<Movie>>> getMovieRecommendations(
-      int id);
+    int id,
+  );
   Future<Either<NetworkExceptions, List<Movie>>> searchMovies(String query);
   Future<Either<NetworkExceptions, List<TvSeries>>> getAiringTodayTvSeries();
   Future<Either<NetworkExceptions, List<TvSeries>>> getPopularTvSeries();
@@ -24,7 +25,9 @@ abstract class Repository {
   Future<Either<NetworkExceptions, List<TvSeries>>> getOnTheAirTvSeries();
   Future<Either<NetworkExceptions, TvSeriesDetail>> getTvSeriesDetail(int id);
   Future<Either<NetworkExceptions, List<TvSeries>>> getTvSeriesRecommendations(
-      int id);
+    int id,
+  );
   Future<Either<NetworkExceptions, List<TvSeries>>> searchTvSeries(
-      String query);
+    String query,
+  );
 }

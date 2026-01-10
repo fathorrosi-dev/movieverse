@@ -8,7 +8,7 @@ class PlatformInfo {
   static const _desktopPlatforms = [
     TargetPlatform.macOS,
     TargetPlatform.windows,
-    TargetPlatform.linux
+    TargetPlatform.linux,
   ];
   static const _mobilePlatforms = [TargetPlatform.android, TargetPlatform.iOS];
 

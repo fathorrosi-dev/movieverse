@@ -8,7 +8,10 @@ class RegisterUser {
   RegisterUser(this.firrebaseRepository);
 
   Future<Either<DatabaseException, void>> execute(
-      String name, String email, String password) {
+    String name,
+    String email,
+    String password,
+  ) {
     return firrebaseRepository.registerUser(name, email, password);
   }
 }

@@ -72,145 +72,70 @@ final locator = GetIt.instance;
 
 void init() {
   // movie bloc
-  locator.registerFactory(() => MovieDetailsBloc(
-        getMovieDetail: locator(),
-        getMovieRecommendations: locator(),
-      ));
-
   locator.registerFactory(
-    () => DiscoverMoviesBloc(
-      locator(),
+    () => MovieDetailsBloc(
+      getMovieDetail: locator(),
+      getMovieRecommendations: locator(),
     ),
   );
 
-  locator.registerFactory(
-    () => NowPlayingMoviesBloc(
-      locator(),
-    ),
-  );
+  locator.registerFactory(() => DiscoverMoviesBloc(locator()));
 
-  locator.registerFactory(
-    () => PopularMoviesBloc(
-      locator(),
-    ),
-  );
+  locator.registerFactory(() => NowPlayingMoviesBloc(locator()));
 
-  locator.registerFactory(
-    () => MoviesSearchBloc(
-      locator(),
-    ),
-  );
+  locator.registerFactory(() => PopularMoviesBloc(locator()));
 
-  locator.registerFactory(
-    () => TopRatedMoviesBloc(
-      locator(),
-    ),
-  );
+  locator.registerFactory(() => MoviesSearchBloc(locator()));
 
-  locator.registerFactory(
-    () => TrendingMoviesBloc(
-      locator(),
-    ),
-  );
+  locator.registerFactory(() => TopRatedMoviesBloc(locator()));
 
-  locator.registerFactory(
-    () => UpcomingMoviesBloc(
-      locator(),
-    ),
-  );
+  locator.registerFactory(() => TrendingMoviesBloc(locator()));
+
+  locator.registerFactory(() => UpcomingMoviesBloc(locator()));
 
   // tv bloc
-  locator.registerFactory(
-    () => AiringTodayTvBloc(
-      locator(),
-    ),
-  );
+  locator.registerFactory(() => AiringTodayTvBloc(locator()));
 
   locator.registerFactory(
-    () => TvDetailsBloc(
-      getTvDetail: locator(),
-      getTvRecommendations: locator(),
-    ),
+    () =>
+        TvDetailsBloc(getTvDetail: locator(), getTvRecommendations: locator()),
   );
 
-  locator.registerFactory(
-    () => DiscoverTvBloc(
-      locator(),
-    ),
-  );
+  locator.registerFactory(() => DiscoverTvBloc(locator()));
 
-  locator.registerFactory(
-    () => OnTheAirTvBloc(
-      locator(),
-    ),
-  );
+  locator.registerFactory(() => OnTheAirTvBloc(locator()));
 
-  locator.registerFactory(
-    () => PopularTvBloc(
-      locator(),
-    ),
-  );
+  locator.registerFactory(() => PopularTvBloc(locator()));
 
-  locator.registerFactory(
-    () => TvSearchBloc(
-      locator(),
-    ),
-  );
+  locator.registerFactory(() => TvSearchBloc(locator()));
 
-  locator.registerFactory(
-    () => TopRatedTvBloc(
-      locator(),
-    ),
-  );
+  locator.registerFactory(() => TopRatedTvBloc(locator()));
 
-  locator.registerFactory(
-    () => TrendingTvBloc(
-      locator(),
-    ),
-  );
+  locator.registerFactory(() => TrendingTvBloc(locator()));
 
   // get user data bloc
-  locator.registerFactory(
-    () => GetUserDataBloc(
-      locator(),
-    ),
-  );
+  locator.registerFactory(() => GetUserDataBloc(locator()));
 
   // register user bloc
-  locator.registerFactory(
-    () => RegisterUserBloc(
-      locator(),
-    ),
-  );
+  locator.registerFactory(() => RegisterUserBloc(locator()));
 
   // login user bloc
-  locator.registerFactory(
-    () => LoginUserBloc(
-      locator(),
-    ),
-  );
+  locator.registerFactory(() => LoginUserBloc(locator()));
 
   // add to watchlist bloc
   locator.registerFactory(
     () => WatchlistBloc(
-        addToWatchlist: locator(),
-        removeFromWatchlist: locator(),
-        getWatchlistById: locator()),
+      addToWatchlist: locator(),
+      removeFromWatchlist: locator(),
+      getWatchlistById: locator(),
+    ),
   );
 
   // remove from watchlist bloc
-  locator.registerFactory(
-    () => RemoveFromWatchlistBloc(
-      locator(),
-    ),
-  );
+  locator.registerFactory(() => RemoveFromWatchlistBloc(locator()));
 
   // get watchlist bloc
-  locator.registerFactory(
-    () => GetWatchlistBloc(
-      locator(),
-    ),
-  );
+  locator.registerFactory(() => GetWatchlistBloc(locator()));
 
   // get credentials bloc
   locator.registerFactory(() => GetCredentialsBloc(locator()));
@@ -219,8 +144,12 @@ void init() {
   locator.registerFactory(() => SaveCredentialsBloc(locator()));
 
   // on boarding bloc
-  locator.registerFactory(() => OnboardingBloc(
-      completeOnboarding: locator(), getOnboardingStatus: locator()));
+  locator.registerFactory(
+    () => OnboardingBloc(
+      completeOnboarding: locator(),
+      getOnboardingStatus: locator(),
+    ),
+  );
 
   // auto login bloc
   locator.registerFactory(() => AutoLoginBloc(locator()));
@@ -281,24 +210,29 @@ void init() {
 
   // Repository
   locator.registerLazySingleton<Repository>(
-      () => RepositoryImpl(remoteDataSource: locator()));
+    () => RepositoryImpl(remoteDataSource: locator()),
+  );
 
   // Firebase Repository
   locator.registerLazySingleton<FirebaseRepository>(
-      () => FirebaseRepositoryImpl(firebaseHelper: locator()));
+    () => FirebaseRepositoryImpl(firebaseHelper: locator()),
+  );
 
   // SharedPreference Repsitory
   locator.registerLazySingleton<SharedPreferenceRepository>(
-      () => SharedPreferenceRepositoryImpl(sharedPreferenceHelper: locator()));
+    () => SharedPreferenceRepositoryImpl(sharedPreferenceHelper: locator()),
+  );
 
   // Datasource
   locator.registerLazySingleton<RemoteDataSource>(
-      () => RemoteDataSourceImpl(client: locator()));
+    () => RemoteDataSourceImpl(client: locator()),
+  );
 
   locator.registerLazySingleton<FirebaseHelper>(() => FirebaseHelperImpl());
 
   locator.registerLazySingleton<SharedPreferenceHelper>(
-      () => SharedPreferenceHelperImpl());
+    () => SharedPreferenceHelperImpl(),
+  );
 
   // external
   locator.registerLazySingleton(() => http.Client());

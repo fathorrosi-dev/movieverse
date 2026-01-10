@@ -14,7 +14,9 @@ class PopularTvBloc extends Bloc<PopularTvEvent, PopularTvState> {
   }
 
   void _fetchPopularTv(
-      FetchPopularTv event, Emitter<PopularTvState> emit) async {
+    FetchPopularTv event,
+    Emitter<PopularTvState> emit,
+  ) async {
     emit(PopularTvLoading());
     final result = await getPopularTv.execute();
     result.fold(

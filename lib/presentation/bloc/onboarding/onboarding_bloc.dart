@@ -10,9 +10,10 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
   final CheckOnboardingStatus getOnboardingStatus;
   final SetOnBoardingStatus completeOnboarding;
 
-  OnboardingBloc(
-      {required this.getOnboardingStatus, required this.completeOnboarding})
-      : super(OnboardingInitial()) {
+  OnboardingBloc({
+    required this.getOnboardingStatus,
+    required this.completeOnboarding,
+  }) : super(OnboardingInitial()) {
     on<OnboardingStarted>(_onOnboardingStarted);
     on<OnboardingCompleted>(_onOnboardingCompleted);
   }

@@ -8,7 +8,9 @@ class LoginUser {
   LoginUser(this.firrebaseRepository);
 
   Future<Either<DatabaseException, void>> execute(
-      String email, String password) {
+    String email,
+    String password,
+  ) {
     return firrebaseRepository.loginUser(email, password);
   }
 }

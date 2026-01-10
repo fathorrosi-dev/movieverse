@@ -33,10 +33,12 @@ class HttpClient {
   }) async {
     try {
       final url = Uri.parse('$baseUrl$uri');
-      final response = await http.post(url,
-          headers: headers,
-          body: jsonEncode(data),
-          encoding: Encoding.getByName('utf-8'));
+      final response = await http.post(
+        url,
+        headers: headers,
+        body: jsonEncode(data),
+        encoding: Encoding.getByName('utf-8'),
+      );
       final decodedResponse = _decodeResponse(response);
       return decodedResponse;
     } on FormatException catch (_) {

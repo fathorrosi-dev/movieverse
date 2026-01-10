@@ -19,7 +19,9 @@ class GetWatchlistBloc extends Bloc<GetWatchlistEvent, GetWatchlistState> {
 
     final result = await getWatchlist.execute();
 
-    result.fold((failure) => emit(GetWatchlistFailure(failure)),
-        (data) => emit(GetWatchlistSuccess(data)));
+    result.fold(
+      (failure) => emit(GetWatchlistFailure(failure)),
+      (data) => emit(GetWatchlistSuccess(data)),
+    );
   }
 }

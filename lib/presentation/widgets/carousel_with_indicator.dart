@@ -146,9 +146,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator>
             CachedNetworkImage(
               imageUrl: _getOptimizedImageUrl(movie.backdropPath) ?? '',
               fit: BoxFit.cover,
-              placeholder: (context, url) => const Center(
-                child: CircularProgressIndicator(),
-              ),
+              placeholder: (context, url) =>
+                  const Center(child: CircularProgressIndicator()),
               errorWidget: (context, url, error) => Container(
                 color: Colors.grey[800],
                 child: const Icon(
@@ -199,9 +198,9 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator>
                     const SizedBox(height: 4),
                     Text(
                       movie.releaseDate!,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Colors.white70,
-                          ),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyMedium?.copyWith(color: Colors.white70),
                     ),
                   ],
                 ],

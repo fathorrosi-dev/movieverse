@@ -15,7 +15,12 @@ class AddWatchlistItem extends WatchlistEvent {
   final bool isMovie;
 
   const AddWatchlistItem(
-      this.id, this.name, this.posterPath, this.release, this.isMovie);
+    this.id,
+    this.name,
+    this.posterPath,
+    this.release,
+    this.isMovie,
+  );
 
   @override
   List<Object> get props => [id, name, posterPath, release, isMovie];

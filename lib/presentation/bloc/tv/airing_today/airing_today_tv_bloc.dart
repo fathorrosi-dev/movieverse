@@ -14,7 +14,9 @@ class AiringTodayTvBloc extends Bloc<AiringTodayTvEvent, AiringTodayTvState> {
   }
 
   void _fetchAiringTodayTv(
-      FetchAiringTodayTv event, Emitter<AiringTodayTvState> emit) async {
+    FetchAiringTodayTv event,
+    Emitter<AiringTodayTvState> emit,
+  ) async {
     emit(AiringTodayTvLoading());
     final result = await getAiringTodayTv.execute();
     result.fold(

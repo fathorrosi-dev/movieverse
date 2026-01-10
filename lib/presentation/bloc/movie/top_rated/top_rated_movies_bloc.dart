@@ -15,7 +15,9 @@ class TopRatedMoviesBloc
   }
 
   void _fetchTopRatedMovies(
-      FetchTopRatedMovies event, Emitter<TopRatedMoviesState> emit) async {
+    FetchTopRatedMovies event,
+    Emitter<TopRatedMoviesState> emit,
+  ) async {
     emit(TopRatedMoviesLoading());
     final result = await getTopRatedMovies.execute();
     result.fold(

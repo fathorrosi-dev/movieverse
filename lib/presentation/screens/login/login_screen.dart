@@ -46,20 +46,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset('assets/images/iconL.png'),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    Text(
-                      'MOVIEVERSE',
-                      style: $styles.text.headlineSmall,
-                    )
+                    const SizedBox(width: 8),
+                    Text('MOVIEVERSE', style: $styles.text.headlineSmall),
                   ],
                 ),
                 Gap($styles.insets.md),
-                Text(
-                  'Welcome back!',
-                  style: $styles.text.headlineMedium,
-                ),
+                Text('Welcome back!', style: $styles.text.headlineMedium),
                 Gap($styles.insets.sm),
                 Text(
                   'Please login to access and start exploring',
@@ -72,13 +64,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   icon: Icons.person,
                   errorText: emailErrorText,
                   onChanged: (value) {
-                    emailErrorText =
-                        Validator.validateEmail(emailController.text);
+                    emailErrorText = Validator.validateEmail(
+                      emailController.text,
+                    );
                     validateForm();
                   },
                   onEditingComplete: () {
-                    emailErrorText =
-                        Validator.validateEmail(emailController.text);
+                    emailErrorText = Validator.validateEmail(
+                      emailController.text,
+                    );
                     validateForm();
                   },
                 ),
@@ -90,13 +84,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   obscureText: obsecureText,
                   errorText: passwordErrorText,
                   onChanged: (value) {
-                    passwordErrorText =
-                        Validator.validatePassword(passwordController.text);
+                    passwordErrorText = Validator.validatePassword(
+                      passwordController.text,
+                    );
                     validateForm();
                   },
                   onEditingComplete: () {
-                    passwordErrorText =
-                        Validator.validatePassword(passwordController.text);
+                    passwordErrorText = Validator.validatePassword(
+                      passwordController.text,
+                    );
                     validateForm();
                   },
                   suffixIcon: IconButton(
@@ -106,7 +102,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       });
                     },
                     icon: Icon(
-                        obsecureText ? Icons.visibility : Icons.visibility_off),
+                      obsecureText ? Icons.visibility : Icons.visibility_off,
+                    ),
                     color: obsecureText
                         ? $styles.theme.neutralColor
                         : $styles.theme.tertiaryColor,
@@ -119,8 +116,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {},
                     child: Text(
                       'Forgot Password?',
-                      style: $styles.text.bodyMedium
-                          .copyWith(color: $styles.theme.tertiaryColor),
+                      style: $styles.text.bodyMedium.copyWith(
+                        color: $styles.theme.tertiaryColor,
+                      ),
                     ),
                   ),
                 ),
@@ -130,11 +128,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     if (state is LoginUserSuccess) {
                       // Registration success, save credentials and navigate to the home screen or any other screen
                       context.read<SaveCredentialsBloc>().add(
-                            SaveCredentialsEvent(
-                              emailController.text,
-                              passwordController.text,
-                            ),
-                          );
+                        SaveCredentialsEvent(
+                          emailController.text,
+                          passwordController.text,
+                        ),
+                      );
                       // Login success, navigate to the home screen or any other screen
                       context.pushReplacement('/navigationBars');
                     } else if (state is LoginUserFailure) {
@@ -175,11 +173,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                   // Dispatch the LoginUserEvent with the entered data
                                   context.read<LoginUserBloc>().add(
-                                        LoginUserButtonPressed(
-                                          email: username,
-                                          password: password,
-                                        ),
-                                      );
+                                    LoginUserButtonPressed(
+                                      email: username,
+                                      password: password,
+                                    ),
+                                  );
                                 }
                               : null,
                           style: ButtonStyle(
@@ -191,8 +189,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           child: Text(
                             "Login",
-                            style: $styles.text.labelLarge
-                                .copyWith(color: Colors.black),
+                            style: $styles.text.labelLarge.copyWith(
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                       );
@@ -213,12 +212,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       child: Text(
                         'Sign Up',
-                        style: $styles.text.bodyMedium
-                            .copyWith(color: $styles.theme.tertiaryColor),
+                        style: $styles.text.bodyMedium.copyWith(
+                          color: $styles.theme.tertiaryColor,
+                        ),
                       ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),

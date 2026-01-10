@@ -8,8 +8,18 @@ class AddToWatchlist {
   AddToWatchlist(this.firrebaseRepository);
 
   Future<Either<DatabaseException, String>> execute(
-      String id, String name, String posterPath, String release, bool isMovie) {
+    String id,
+    String name,
+    String posterPath,
+    String release,
+    bool isMovie,
+  ) {
     return firrebaseRepository.addToWatchlist(
-        id, name, posterPath, release, isMovie);
+      id,
+      name,
+      posterPath,
+      release,
+      isMovie,
+    );
   }
 }

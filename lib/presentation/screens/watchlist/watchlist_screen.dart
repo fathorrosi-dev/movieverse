@@ -34,34 +34,31 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(
-            left: 8,
-            right: 8,
-          ),
+          padding: const EdgeInsets.only(left: 8, right: 8),
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: BlocBuilder<GetWatchlistBloc, GetWatchlistState>(
-                builder: (_, state) {
-              if (state is GetWatchlistLoading) {
-                return const Center(
-                  child: CircularProgressIndicator(
-                    color: Colors.blueAccent,
-                  ),
-                );
-              } else if (state is GetWatchlistSuccess) {
-                return SingleChildScrollView(
-                    child: WatchlistCard(state.watchlist));
-              } else {
-                return Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'There is no watchlist data yet',
-                    style: $styles.text.bodyLarge,
-                  ),
-                );
-              }
-            }),
+              builder: (_, state) {
+                if (state is GetWatchlistLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(color: Colors.blueAccent),
+                  );
+                } else if (state is GetWatchlistSuccess) {
+                  return SingleChildScrollView(
+                    child: WatchlistCard(state.watchlist),
+                  );
+                } else {
+                  return Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'There is no watchlist data yet',
+                      style: $styles.text.bodyLarge,
+                    ),
+                  );
+                }
+              },
+            ),
           ),
         ),
       ),

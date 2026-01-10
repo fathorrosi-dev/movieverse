@@ -14,7 +14,9 @@ class PopularMoviesBloc extends Bloc<PopularMoviesEvent, PopularMoviesState> {
   }
 
   void _fetchPopularMovies(
-      FetchPopularMovies event, Emitter<PopularMoviesState> emit) async {
+    FetchPopularMovies event,
+    Emitter<PopularMoviesState> emit,
+  ) async {
     emit(PopularMoviesLoading());
     final result = await getPopularMovies.execute();
     result.fold(

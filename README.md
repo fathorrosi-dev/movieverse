@@ -1,6 +1,7 @@
 # Movieverse
 
 ![Mockup](mockup.png)
+![Mockup1](mockup1.png)
 
 A new Flutter project.
 

@@ -14,7 +14,9 @@ class TrendingTvBloc extends Bloc<TrendingTvEvent, TrendingTvState> {
   }
 
   void _fetchTrendingTv(
-      FetchTrendingTv event, Emitter<TrendingTvState> emit) async {
+    FetchTrendingTv event,
+    Emitter<TrendingTvState> emit,
+  ) async {
     emit(TrendingTvLoading());
     final result = await getTrendingTv.execute();
     result.fold(

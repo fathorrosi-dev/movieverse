@@ -8,10 +8,7 @@ import '../../bloc/movie/detail/movie_details_bloc.dart';
 class MovieDetailScreen extends StatefulWidget {
   final int id;
 
-  const MovieDetailScreen({
-    super.key,
-    required this.id,
-  });
+  const MovieDetailScreen({super.key, required this.id});
 
   @override
   State<MovieDetailScreen> createState() => _MovieDetailScreenState();
@@ -27,8 +24,9 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
   Future<void> _fetchInitialData() async {
     if (!mounted) return;
 
-    BlocProvider.of<MovieDetailsBloc>(context)
-        .add(FetchMovieDetails(widget.id));
+    BlocProvider.of<MovieDetailsBloc>(
+      context,
+    ).add(FetchMovieDetails(widget.id));
   }
 
   @override
@@ -37,33 +35,32 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: $styles.theme.primaryColor,
-        title: Text(
-          'Movie Detail',
-          style: $styles.text.headlineSmall,
-        ),
+        title: Text('Movie Detail', style: $styles.text.headlineSmall),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(child:
-            BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
-                builder: (_, movie) {
-          if (movie is MovieDetailsHasData) {
-            return MovieDetailContent(
-                movie.movieDetails, movie.movieRecommendations);
-          } else if (movie is MovieDetailsError) {
-            return Text(movie.message);
-          } else {
-            return SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: const Align(
-                alignment: Alignment.center,
-                child: CircularProgressIndicator(
-                  color: Colors.blueAccent,
-                ),
-              ),
-            );
-          }
-        })),
+        child: SingleChildScrollView(
+          child: BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
+            builder: (_, movie) {
+              if (movie is MovieDetailsHasData) {
+                return MovieDetailContent(
+                  movie.movieDetails,
+                  movie.movieRecommendations,
+                );
+              } else if (movie is MovieDetailsError) {
+                return Text(movie.message);
+              } else {
+                return SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  child: const Align(
+                    alignment: Alignment.center,
+                    child: CircularProgressIndicator(color: Colors.blueAccent),
+                  ),
+                );
+              }
+            },
+          ),
+        ),
       ),
     );
   }

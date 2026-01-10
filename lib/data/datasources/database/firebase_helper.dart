@@ -10,7 +10,12 @@ abstract class FirebaseHelper {
   Future<void> loginUser(String email, String password);
   Future<UserModel> getUserData();
   Future<String> addToWatchlist(
-      String id, String name, String posterPath, String release, bool isMovie);
+    String id,
+    String name,
+    String posterPath,
+    String release,
+    bool isMovie,
+  );
   Future<String> removeFromWatchlist(String id);
   Future<List<WatchlistItemModel>> getWatchlist();
   Future<bool> getWatchlistById(String id);
@@ -46,11 +51,8 @@ class FirebaseHelperImpl implements FirebaseHelper {
   @override
   Future<void> registerUser(String name, String email, String password) async {
     try {
-      UserCredential userCredential =
-          await _auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+      UserCredential userCredential = await _auth
+          .createUserWithEmailAndPassword(email: email, password: password);
 
       String uid = userCredential.user!.uid;
 
@@ -90,8 +92,13 @@ class FirebaseHelperImpl implements FirebaseHelper {
   }
 
   @override
-  Future<String> addToWatchlist(String id, String name, String posterPath,
-      String release, bool isMovie) async {
+  Future<String> addToWatchlist(
+    String id,
+    String name,
+    String posterPath,
+    String release,
+    bool isMovie,
+  ) async {
     try {
       await _firestore
           .collection('watchlist')
@@ -99,12 +106,12 @@ class FirebaseHelperImpl implements FirebaseHelper {
           .collection('data')
           .doc(id)
           .set({
-        'id': id,
-        'name': name,
-        'posterPath': posterPath,
-        'release': release,
-        'isMovie': isMovie,
-      });
+            'id': id,
+            'name': name,
+            'posterPath': posterPath,
+            'release': release,
+            'isMovie': isMovie,
+          });
 
       return 'Added To Watchlist';
     } catch (e, stackTrace) {
@@ -125,8 +132,11 @@ class FirebaseHelperImpl implements FirebaseHelper {
 
       return 'Removed From Watchlist';
     } catch (e, stackTrace) {
-      _logger.e('Error removing item from watchlist',
-          error: e, stackTrace: stackTrace);
+      _logger.e(
+        'Error removing item from watchlist',
+        error: e,
+        stackTrace: stackTrace,
+      );
       throw DatabaseException(e.toString());
     }
   }

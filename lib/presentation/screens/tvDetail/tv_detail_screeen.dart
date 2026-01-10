@@ -32,31 +32,32 @@ class _TvDetailScreenState extends State<TvDetailScreen> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: $styles.theme.primaryColor,
-        title: Text(
-          'Tv Detail',
-          style: $styles.text.headlineSmall,
-        ),
+        title: Text('Tv Detail', style: $styles.text.headlineSmall),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-            child: BlocBuilder<TvDetailsBloc, TvDetailsState>(builder: (_, tv) {
-          if (tv is TvDetailsHasData) {
-            return TvDetailContent(tv.tvSeriesDetail, tv.tvSeriesRecomendation);
-          } else if (tv is TvDetailsError) {
-            return Text(tv.message);
-          } else {
-            return SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: const Align(
-                alignment: Alignment.center,
-                child: CircularProgressIndicator(
-                  color: Colors.blueAccent,
-                ),
-              ),
-            );
-          }
-        })),
+          child: BlocBuilder<TvDetailsBloc, TvDetailsState>(
+            builder: (_, tv) {
+              if (tv is TvDetailsHasData) {
+                return TvDetailContent(
+                  tv.tvSeriesDetail,
+                  tv.tvSeriesRecomendation,
+                );
+              } else if (tv is TvDetailsError) {
+                return Text(tv.message);
+              } else {
+                return SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  child: const Align(
+                    alignment: Alignment.center,
+                    child: CircularProgressIndicator(color: Colors.blueAccent),
+                  ),
+                );
+              }
+            },
+          ),
+        ),
       ),
     );
   }

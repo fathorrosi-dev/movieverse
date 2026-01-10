@@ -18,10 +18,7 @@ class LoginUserBloc extends Bloc<LoginUserEvent, LoginUserState> {
     Emitter<LoginUserState> emit,
   ) async {
     emit(LoginUserLoading());
-    final result = await repository.loginUser(
-      event.email,
-      event.password,
-    );
+    final result = await repository.loginUser(event.email, event.password);
     result.fold(
       (exception) => emit(LoginUserFailure(exception)),
       (_) => emit(LoginUserSuccess()),

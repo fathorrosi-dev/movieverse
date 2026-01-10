@@ -15,7 +15,9 @@ class TrendingMoviesBloc
   }
 
   void _fetchTrendingMovies(
-      FetchTrendingMovies event, Emitter<TrendingMoviesState> emit) async {
+    FetchTrendingMovies event,
+    Emitter<TrendingMoviesState> emit,
+  ) async {
     emit(TrendingMoviesLoading());
     final result = await getTrendingMovies.execute();
     result.fold(

@@ -29,10 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(
-          'Profile',
-          style: $styles.text.headlineSmall,
-        ),
+        title: Text('Profile', style: $styles.text.headlineSmall),
         backgroundColor: $styles.theme.primaryColor,
       ),
       body: SafeArea(
@@ -60,22 +57,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     Gap($styles.insets.xs),
                     BlocBuilder<GetUserDataBloc, GetUserDataState>(
-                        builder: (_, state) {
-                      if (state is GetUserDataLoading) {
-                        return const Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.blueAccent,
-                          ),
-                        );
-                      } else if (state is GetUserDataSuccess) {
-                        return Text(
-                          state.user.name,
-                          style: $styles.text.headlineSmall,
-                        );
-                      } else {
-                        return const SizedBox();
-                      }
-                    }),
+                      builder: (_, state) {
+                        if (state is GetUserDataLoading) {
+                          return const Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.blueAccent,
+                            ),
+                          );
+                        } else if (state is GetUserDataSuccess) {
+                          return Text(
+                            state.user.name,
+                            style: $styles.text.headlineSmall,
+                          );
+                        } else {
+                          return const SizedBox();
+                        }
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -123,10 +121,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         'Sharing Settings',
                         style: $styles.text.bodyLarge,
                       ),
-                    )
+                    ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),

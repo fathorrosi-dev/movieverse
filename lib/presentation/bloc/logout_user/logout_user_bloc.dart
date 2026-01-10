@@ -13,7 +13,9 @@ class LogoutUserBloc extends Bloc<LogoutUserEvent, LogoutUserState> {
   }
 
   void _onLogoutRequested(
-      LogoutRequested event, Emitter<LogoutUserState> emit) async {
+    LogoutRequested event,
+    Emitter<LogoutUserState> emit,
+  ) async {
     emit(LogoutLoading());
 
     try {

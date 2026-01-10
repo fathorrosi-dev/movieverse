@@ -20,11 +20,7 @@ class RegisterUserBloc extends Bloc<RegisterUserEvent, RegisterUserState> {
     emit(RegisterUserLoading());
 
     try {
-      await registerUser.execute(
-        event.name,
-        event.email,
-        event.password,
-      );
+      await registerUser.execute(event.name, event.email, event.password);
       emit(RegisterUserSuccess());
     } catch (e) {
       emit(RegisterUserFailure(DatabaseException(e.toString())));
